@@ -1,25 +1,51 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
 
-function App() {
+class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      searchfield: '',
+      hotels: [],
+      allHotels: true,
+      campground: false,
+      deluxe: false,
+      moderate: false,
+      value: false,
+      nullOther: false
+    }
+  }
+
+  componentDidMount(){
+    fetch('https://touringplans.com/walt-disney-world/hotels.json')
+    .then(response => response.json())
+    .then(hotels => this.setState({hotels: hotels}));
+  }
+
+  render(){
+    const {searchfield, hotels, allHotels, campground,
+            deluxe, moderate, value, nullOther} = this.state;
+    const filteredHotelsbyName = hotels.filter((hotel) =>{
+      return hotel.name.toLowerCase().includes(searchfield.toLowerCase());
+    })
+    const filteredHotelsbyType = hotels.filter((hotel) =>{
+      return hotel.category_code.toLowerCase().includes();
+    })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Walt Disney World Search</h1>
+      <button>All</button>
+      <button>Deluxe & Deluxe Villas</button>
+      <button>Moderate</button>
+      <button>Value</button>
+      <button>Other</button>
+      <img src={logo} className="App-logo" alt="logo" />
+      
+      
     </div>
   );
+  }
 }
 
 export default App;
