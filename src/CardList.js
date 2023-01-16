@@ -1,20 +1,22 @@
 import React from 'react';
 import Card from './Card';
 
-const CardList = ({characters}) => {
+const CardList = ({artWorks}) => {
+    try { 
+        console.log("CardList:", artWorks[0].title);
+      } catch (error) {
+        console.log(error)
+      }
     return (
         <>
-            {characters.map((character, i) =>{
+            {artWorks.map((artWork) =>{
                 return (
                     <Card 
-                        key={i} 
-                        id={characters[i]._id} 
-                        name={characters[i].name} 
-                        imageUrl={characters[i].imageUrl}
-                        films={characters[i].films}
-                        shortFilms={characters[i].shortFilms}
-                        tvShows={characters[i].tvShows}
-                        videoGames={characters[i].videoGames}
+                        title={artWork.title} 
+                        image_id={artWork.image_id}
+                        date_display={artWork.date_display}
+                        artist_display={artWork.artist_display}
+                        id={artWork.id}
                     />
                 );
             })

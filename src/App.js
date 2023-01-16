@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchBox from './SearchBox';
 import CardList from './CardList';
+import ErrorBoundary from './ErrorBoundary';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
       searchfield: '',
-      characters: [],
+      artWorks: []
     }
   }
 
   componentDidMount(){
-    fetch('https://api.disneyapi.dev/characters')
+    fetch('https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=40&fields=id,title,image_id,date_display,artist_display')
     .then(response => response.json())
-    .then(data => {
-      console.log("data:",data);
-      this.setState({characters: data.data})
-      console.log("characters:", this.state.characters)
-    });
+    .then(art => {
+      this.setState({artWorks: art.data})
+      console.log("artWorks:", this.state.artWorks);
+    })
+    .catch((err) => { console.log('fetch request failed: ', err) });
   }
 
   onSearchChange = (event) =>{
@@ -27,19 +28,19 @@ class App extends Component {
   }
 
   render(){
-    const {searchfield, characters} = this.state;
-    const filteredCharacters = characters.filter((character) =>{
-      return character.name.toLowerCase().includes(searchfield.toLowerCase());
+    const {searchfield, artWorks} = this.state;
+    const filteredArtworks = artWorks.filter((artWork) =>{
+      return artWork.title.toLowerCase().includes(searchfield.toLowerCase());
     });
-  return (
-    <div>
-      <h1>Disney Character Search</h1>
-      <button>TV</button>
-      <button>Movie</button>
-      <button>Video Game</button>
-      
+    return !artWorks.length ?
+    <h1>Loading...</h1> : 
+    (
+    <div className='tc'>
+      <h1>Artwork Color Palette</h1>
       <SearchBox searchChange={this.onSearchChange}/>
-      <CardList characters={filteredCharacters}/>
+      <ErrorBoundary>
+        <CardList artWorks={filteredArtworks}/>
+      </ErrorBoundary>
     </div>
   );
   }
