@@ -1,5 +1,5 @@
-import './App.css';
 import React, { Component } from 'react';
+import './App.css';
 import SearchBox from './SearchBox';
 import CardList from './CardList';
 
@@ -15,7 +15,11 @@ class App extends Component {
   componentDidMount(){
     fetch('https://api.disneyapi.dev/characters')
     .then(response => response.json())
-    .then(characters => this.setState({characters: characters}));
+    .then(data => {
+      console.log("data:",data);
+      this.setState({characters: data.data})
+      console.log("characters:", this.state.characters)
+    });
   }
 
   onSearchChange = (event) =>{
@@ -28,14 +32,14 @@ class App extends Component {
       return character.name.toLowerCase().includes(searchfield.toLowerCase());
     });
   return (
-    <div className="App">
+    <div>
       <h1>Disney Character Search</h1>
       <button>TV</button>
       <button>Movie</button>
       <button>Video Game</button>
       
       <SearchBox searchChange={this.onSearchChange}/>
-      <CardList hotels={filteredCharacters}/>
+      <CardList characters={filteredCharacters}/>
     </div>
   );
   }

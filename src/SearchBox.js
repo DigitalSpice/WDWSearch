@@ -5,7 +5,7 @@ const SearchBox = ({searchChange}) => {
         <div>
             <input
                 type='search'
-                placeholder='search hotels'
+                placeholder='search characters'
                 onChange={searchChange}
                 />
         </div>
