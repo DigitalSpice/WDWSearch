@@ -8,20 +8,14 @@ class App extends Component {
     super();
     this.state = {
       searchfield: '',
-      hotels: [],
-      allHotels: true,
-      campground: false,
-      deluxe: false,
-      moderate: false,
-      value: false,
-      nullOther: false
+      characters: [],
     }
   }
 
   componentDidMount(){
-    fetch('https://touringplans.com/walt-disney-world/hotels.json')
+    fetch('https://api.disneyapi.dev/characters')
     .then(response => response.json())
-    .then(hotels => this.setState({hotels: hotels}));
+    .then(characters => this.setState({characters: characters}));
   }
 
   onSearchChange = (event) =>{
@@ -29,25 +23,19 @@ class App extends Component {
   }
 
   render(){
-    const {searchfield, hotels} = this.state;
-    const filteredHotelsbyName = hotels.filter((hotel) =>{
-      return hotel.name.toLowerCase().includes(searchfield.toLowerCase());
+    const {searchfield, characters} = this.state;
+    const filteredCharacters = characters.filter((character) =>{
+      return character.name.toLowerCase().includes(searchfield.toLowerCase());
     });
-    // const filteredHotelsbyType = hotels.filter((hotel) =>{
-    //   return hotel.category_code.toLowerCase().includes();
-    // })
   return (
     <div className="App">
-      <h1>Walt Disney World Search</h1>
-      <button>All</button>
-      <button>Deluxe & Deluxe Villas</button>
-      <button>Moderate</button>
-      <button>Value</button>
-      <button>Other</button>
-      <img src={'/wdw_beacons.jpeg'} alt="logo" />
+      <h1>Disney Character Search</h1>
+      <button>TV</button>
+      <button>Movie</button>
+      <button>Video Game</button>
       
       <SearchBox searchChange={this.onSearchChange}/>
-      <CardList hotels={filteredHotelsbyName}/>
+      <CardList hotels={filteredCharacters}/>
     </div>
   );
   }

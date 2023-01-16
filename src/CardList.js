@@ -1,20 +1,20 @@
 import React from 'react';
 import Card from './Card';
 
-const CardList = ({hotels}) => {
+const CardList = ({characters}) => {
     return (
         <>
-            {hotels.map((hotel, i) =>{
+            {characters.map((character, i) =>{
                 return (
                     <Card 
                         key={i} 
-                        id={hotels[i].id} 
-                        name={hotels[i].name} 
-                        address={hotels[i].address}
-                        url={hotels[i].url}
-                        cost_range={hotels[i].cost_range}
-                        category_code={hotels[i].category_code}
-                        theme={hotels[i].theme}
+                        id={characters[i]._id} 
+                        name={characters[i].name} 
+                        imageUrl={characters[i].imageUrl}
+                        films={characters[i].films}
+                        shortFilms={characters[i].shortFilms}
+                        tvShows={characters[i].tvShows}
+                        videoGames={characters[i].videoGames}
                     />
                 );
             })
