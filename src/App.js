@@ -36,7 +36,7 @@ class App extends Component {
     <h1>Loading...</h1> : 
     (
     <div className='tc'>
-      <h1>Artwork Color Palette</h1>
+      <h1 className='f1 bg-lightest-blue mv0 pa4'>Artwork Color Palette</h1>
       <SearchBox searchChange={this.onSearchChange}/>
       <ErrorBoundary>
         <CardList artWorks={filteredArtworks}/>
