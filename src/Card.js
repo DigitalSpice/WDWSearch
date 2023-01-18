@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = ({title, id, image_id, date_display, artist_display}) => {
     return (
-        <div className='bg-lightest-blue ma2 flex flex-column flex-row-ns items-center w-50 center grow'>
+        <div className='bg-lightest-blue ma2 flex flex-row-ns items-center w-80 center grow'>
             <div className='pr3-ns mb4 mb0-ns w-40-ns flex items-center'>
                 <img alt='art' src={`https://www.artic.edu/iiif/2/${image_id}/full/400,/0/default.jpg`} />
             </div>

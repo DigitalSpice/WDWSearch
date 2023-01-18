@@ -35,12 +35,25 @@ class App extends Component {
     return !artWorks.length ?
     <h1>Loading...</h1> : 
     (
-    <div className='tc'>
-      <h1 className='f1 bg-lightest-blue mv0 pa4'>Artwork Color Palette</h1>
-      <SearchBox searchChange={this.onSearchChange}/>
-      <ErrorBoundary>
-        <CardList artWorks={filteredArtworks}/>
-      </ErrorBoundary>
+    <div>
+      <div className='tc'>
+        <h1 className='f1 bg-lightest-blue mv0 pa4 bb'>Artwork Color Palette</h1>
+        <div className='fl w-20 pa2 br bb'>
+          <h2>Filter</h2>
+          <SearchBox searchChange={this.onSearchChange}/>
+          <h3>Common Filters:</h3>
+          <button>Vincent van Gogh</button><br/><br/>
+          <button>Katsushika Hokusai</button><br/><br/>
+          <button>Claude Monet</button><br/><br/>
+          <button>Pierre-Auguste Renoir</button><br/><br/>
+          <button>Rembrandt</button>
+        </div>
+        <div className='fl w-80 pa2'>
+        <ErrorBoundary>
+          <CardList artWorks={filteredArtworks}/>
+        </ErrorBoundary>
+        </div>
+      </div>
     </div>
   );
   }
