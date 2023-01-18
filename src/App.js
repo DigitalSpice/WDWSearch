@@ -46,7 +46,7 @@ class App extends Component {
           <button>Vincent van Gogh</button><br/><br/>
           <button>Katsushika Hokusai</button><br/><br/>
           <button>Claude Monet</button><br/><br/>
-          <button>Claude Monet</button><br/><br/>
+          <button>Paul Cezanne</button><br/><br/>
           <button>Pierre-Auguste Renoir</button><br/><br/>
           <button>Rembrandt</button>
         </div>
