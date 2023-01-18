@@ -3,6 +3,7 @@ import './App.css';
 import SearchBox from './SearchBox';
 import CardList from './CardList';
 import ErrorBoundary from './ErrorBoundary';
+import Scroll from './Scroll';
 
 class App extends Component {
   constructor(){
@@ -37,22 +38,25 @@ class App extends Component {
     (
     <div>
       <div className='tc'>
-        <h1 className='f1 bg-lightest-blue mv0 pa4 bb'>Artwork Color Palette</h1>
-        <div className='fl w-20 pa2 br bb'>
-          <h2>Filter</h2>
+        <h1 className='f1 bg-yellow mv0 pa4 bb ttu calisto white'>Artwork Color Palette</h1>
+        <div className='fl w-20 pb7 br bb filter white'>
+          <h2 className='underline'>Filter</h2>
           <SearchBox searchChange={this.onSearchChange}/>
           <h3>Common Filters:</h3>
           <button>Vincent van Gogh</button><br/><br/>
           <button>Katsushika Hokusai</button><br/><br/>
           <button>Claude Monet</button><br/><br/>
+          <button>Claude Monet</button><br/><br/>
           <button>Pierre-Auguste Renoir</button><br/><br/>
           <button>Rembrandt</button>
         </div>
-        <div className='fl w-80 pa2'>
-        <ErrorBoundary>
-          <CardList artWorks={filteredArtworks}/>
-        </ErrorBoundary>
-        </div>
+        <Scroll>
+          <div className='fl w-80 pa2'>
+          <ErrorBoundary>
+            <CardList artWorks={filteredArtworks}/>
+          </ErrorBoundary>
+          </div>
+        </Scroll>
       </div>
     </div>
   );

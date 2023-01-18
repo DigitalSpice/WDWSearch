@@ -2,12 +2,12 @@ import React from "react";
 
 const SearchBox = ({searchChange}) => {
     return(
-        <div className='pa3'>
+        <div className='pa2'>
             <input
-                className="pa2 br--top b--blue bg-washed-blue input-reset w-100"
+                className="pa2 br--top b--yellow bg-washed-yellow input-reset w-100"
                 type='search'
                 id='searchbox'
-                placeholder='search artwork'
+                placeholder='search by artwork'
                 onChange={searchChange}
                 />
         </div>
